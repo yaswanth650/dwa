@@ -1,14 +1,12 @@
-
-node {
- agent any
-   
-    environment {
-        PATH = "$PATH:/usr/share/maven/bin"
+pipeline {
+    agent { docker { image 'maven:3.3.3' } }
+      stages {
+        stage('log version info') {
+      steps {
+     git 'https://github.com/learn-devops-fast/...
+        sh 'mvn --version'
+        sh 'mvn clean install'
+      }
     }
-stage('checkout')
-{ 
- echo 'checkout' 
- sh "mvn clean"
- 
-} 
+  }
 }
