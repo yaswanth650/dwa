@@ -5,7 +5,7 @@ pipeline{
         PATH = "$PATH:/usr/share/maven/bin"
     }
     stages{
-       stage('GetCode - GH'){
+       stage('GetCode - GHub'){
             steps{
                 git 'https://github.com/soumenmaitra/dwa.git'
             }
