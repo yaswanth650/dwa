@@ -10,7 +10,7 @@ pipeline{
                 git 'https://github.com/soumenmaitra/dwa.git'
             }
          }        
-       stage('Build - MVN'){
+        stage('Build - MVN'){
             steps{
                 sh 'mvn clean package'
             }
@@ -20,19 +20,13 @@ pipeline{
                 echo "hello"
             }   
          }
-        
-             
-       
-            
-       
-.
-        stage('SonarQube - Docker') {
+         stage('SonarQube - Docker') {
              steps{
                      withSonarQubeEnv('SonarQube_9.5') { 
                      sh "mvn sonar:sonar"
                      }
                   }
-        }
+          }
        
     }
 }
