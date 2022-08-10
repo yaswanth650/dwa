@@ -16,7 +16,9 @@ pipeline{
             }
          }
          stage('tomcat deploy'){
-             
+                steps{
+                
+            }   
          }
         stage('SonarQube - Docker') {
              steps{
