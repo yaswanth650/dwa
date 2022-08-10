@@ -1,6 +1,8 @@
 pipeline{
     agent any
-   
+    docker {
+            image 'ubuntu:latest'
+        }
     environment {
         PATH = "$PATH:/usr/share/maven/bin"
     }
