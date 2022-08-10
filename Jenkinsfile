@@ -16,7 +16,7 @@ pipeline{
             }
          }
          
-        stage('Trivy Image Scan') {
+        stage('Trivy Docker Image Scan') {
             steps {
                  sh 'mkdir -p reports'
                 sh 'trivy image sonarqube > /home/trivy/Report_PL.txt'
@@ -30,13 +30,14 @@ pipeline{
                      withSonarQubeEnv('SonarQube_9.5') { 
                      sh "mvn sonar:sonar"
                      }
-                  }
+              }
         }
+        
         stage('Tomcat deploy'){
             steps{
                 echo "hello"
             }   
-         }
+        }
         
         
        
