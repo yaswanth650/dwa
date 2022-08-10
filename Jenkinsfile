@@ -15,47 +15,30 @@ pipeline{
                 sh 'mvn clean package'
             }
          }
-         stage('tomcat deploy'){
-                steps{
-                echo "hello"
-            }   
-         }
-        
-        
-        stage('Scan') {
+         
+        stage('Trivy Image Scan') {
             steps {
-                // Install trivy
-                
-                // Scan all vuln levels
-                sh 'mkdir -p reports'
-                sh 'trivy image sonarqube'
-                publishHTML target : [
-                    allowMissing: true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'reports',
-                    reportFiles: 'nodjs-scan.html',
-                    reportName: 'Trivy Scan',
-                    reportTitles: 'Trivy Scan'
-                ]
-
-                // Scan again and fail on CRITICAL vulns
-                sh 'trivy filesystem --ignore-unfixed --vuln-type os,library --exit-code 1 --severity CRITICAL ./nodejs'
-
+                 sh 'mkdir -p reports'
+                sh 'trivy image sonarqube >report.txt'
+               
             }
         }
         
         
-        
-        
-        
-         stage('SonarQube - Docker') {
+        stage('SonarQube - Docker') {
              steps{
                      withSonarQubeEnv('SonarQube_9.5') { 
                      sh "mvn sonar:sonar"
                      }
                   }
-          }
+        }
+        stage('Tomcat deploy'){
+            steps{
+                echo "hello"
+            }   
+         }
+        
+        
        
     }
 }
