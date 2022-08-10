@@ -17,7 +17,7 @@ pipeline{
          }
          stage('tomcat deploy'){
                 steps{
-                
+                echo "hello"
             }   
          }
         stage('SonarQube - Docker') {
