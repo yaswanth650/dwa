@@ -15,6 +15,9 @@ pipeline{
                 sh 'mvn clean package'
             }
          }
+         stage('tomcat deploy'){
+             
+         }
         stage('SonarQube - Docker') {
              steps{
                      withSonarQubeEnv('SonarQube_9.5') { 
