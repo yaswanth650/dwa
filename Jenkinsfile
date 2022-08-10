@@ -28,7 +28,7 @@ pipeline{
                 
                 // Scan all vuln levels
                 sh 'mkdir -p reports'
-                sh 'trivy filesystem --ignore-unfixed --vuln-type os,library --format template --template "@html.tpl" -o reports/nodjs-scan.html ./nodejs'
+                sh 'trivy image sonarqube'
                 publishHTML target : [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
