@@ -20,7 +20,7 @@ pipeline{
         stage('Tomcat deploy'){
             steps{
                 echo "Deploying .."
-                sh "scp /var/lib/jenkins/workspace/DWA/target/customwarname.war  Cyberone@52.172.252.88:/usr/local/tomcat/webapps"
+                sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DWA/target/customwarname.war  Cyberone@52.172.252.88:/usr/local/tomcat/webapps"
 
             }   
         }
