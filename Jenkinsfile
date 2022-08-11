@@ -1,12 +1,8 @@
-pipeline{
-    agent {
-        docker {
-            image 'ubuntu:latest'
-        }
-    }
-    docker {
-            image 'ubuntu:latest'
-        }
+E635601.123
+
+Obvious.123	pipeline{
+    agent any
+   
     environment {
         PATH = "$PATH:/usr/share/maven/bin"
     }
@@ -21,27 +17,13 @@ pipeline{
                 sh 'mvn clean package'
             }
          }
-         
-        stage('Trivy Docker Image Scan') {
-            steps {
-                 sh 'mkdir -p reports'
-                sh 'trivy image sonarqube > /home/trivy/Report_PL.txt'
-               
-            }
-        }
-        
-        
-        stage('SonarQube - Docker') {
-             steps{
-                     withSonarQubeEnv('SonarQube_9.5') { 
-                     sh "mvn sonar:sonar"
-                     }
-              }
-        }
+          
         
         stage('Tomcat deploy'){
             steps{
-                echo "hello"
+                echo "Deploying .."
+                sh "scp /var/lib/jenkins/workspace/DWA/target/customwarname.war  Cyberone@52.172.252.88:/usr/local/tomcat/webapps"
+
             }   
         }
         
