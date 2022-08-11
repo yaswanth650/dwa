@@ -1,6 +1,4 @@
-E635601.123
-
-Obvious.123	pipeline{
+pipeline{
     agent any
    
     environment {
