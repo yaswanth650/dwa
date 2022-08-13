@@ -21,7 +21,7 @@ pipeline{
             steps{
                 echo "Deploying .."
                 //sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DWA/target/customwarname.war  Cyberone@54321@52.172.252.88:/usr/local/tomcat/webapps"
-                  sh  "sudo docker cp /var/lib/jenkins/workspace/DWA/target/customwarname.war 1bd62bbb7c2e:/usr/local/tomcat/webapps"
+                  sh  "docker cp /var/lib/jenkins/workspace/DWA/target/customwarname.war 1bd62bbb7c2e:/usr/local/tomcat/webapps"
             }   
         }
         
