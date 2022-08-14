@@ -22,9 +22,9 @@ pipeline{
         
         stage('Image Scan') {
             steps {
-                 sh 'mkdir -p reports'
-                sh 'trivy image sonarqube > /home/trivy/Report_PL.txt'
-               
+                // sh 'mkdir -p reports'
+                //sh 'trivy image sonarqube > /home/trivy/Report_PL.txt'
+               sh 'trivy image sonarqube'
             }
         }
                 
