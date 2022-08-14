@@ -6,10 +6,11 @@ pipeline{
     }
     stages{
         
+        
+        
         stage('SCM'){
             steps{
                 git 'https://github.com/soumenmaitra/dwa.git'
-                sh 'docker rm $(docker ps -a -f status=exited -q)'
 
             }
          }        
@@ -57,7 +58,11 @@ pipeline{
                // sh './zap.sh'
             }
          }
-          
+        stage ('Bin'){
+            steps{
+               sh 'docker rm $(docker ps -a -f status=exited -q)'
+            }
+        }
         
         
        
