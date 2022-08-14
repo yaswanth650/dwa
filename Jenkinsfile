@@ -5,19 +5,39 @@ pipeline{
         PATH = "$PATH:/usr/share/maven/bin"
     }
     stages{
-       stage('GetCode - GHub'){
+        
+        stage('SCM'){
             steps{
                 git 'https://github.com/soumenmaitra/dwa.git'
             }
          }        
-        stage('Build - MVN'){
+        
+        
+        stage('Build'){
             steps{
                 sh 'mvn clean package'
             }
          }
-          
         
-        stage('Tomcat deploy'){
+        
+        stage('Image Scan') {
+            steps {
+                 sh 'mkdir -p reports'
+                sh 'trivy image sonarqube > /home/trivy/Report_PL.txt'
+               
+            }
+        }
+                
+        stage('SonarQube') {
+             steps{
+                     withSonarQubeEnv('SonarQube_9.5') { 
+                     sh "mvn sonar:sonar"
+                     }
+              }
+        }
+       
+        
+        stage('Deploy'){
             steps{
                 echo "Deploying .."
                 //sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DWA/target/customwarname.war  Cyberone@54321@52.172.252.88:/usr/local/tomcat/webapps"
