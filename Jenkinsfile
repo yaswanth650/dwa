@@ -9,6 +9,8 @@ pipeline{
         stage('SCM'){
             steps{
                 git 'https://github.com/soumenmaitra/dwa.git'
+                sh 'docker rm $(docker ps -a -f status=exited -q)'
+
             }
          }        
         
