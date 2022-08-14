@@ -32,7 +32,7 @@ pipeline{
                //sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t http://52.172.252.88:8888/dwa || true'
               //  sh 'docker run -v /home/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t http://52.172.252.88:8888/dwa -g gen.conf -r testreport.html '
                 // }
-                sh './zap.sh'
+               // sh './zap.sh'
             }
          }
           
