@@ -7,7 +7,7 @@
 
   <jsp:body>
     <div class="row">
-      <h1>Hello in DWA!</h1>
+      <h1>Hello in DWA Application!</h1>
       <p>
         <i>Damn Vulnerable web Application</i> is set of labs for security course.
       </p>
