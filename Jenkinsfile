@@ -1,18 +1,11 @@
 pipeline{
     agent any
-   
-    environment {
-        PATH = "$PATH:/usr/share/maven/bin"
+    tools{
+        maven 'Maven'
     }
-    stages{
-    stage('SCM'){
-            steps{
-                git 'https://github.com/soumenmaitra/dwa.git'
-
-            }
-         }        
     
-      stage('SAST') {
+    stages{
+        stage('SAST') {
              steps{
                     withSonarQubeEnv('Sonar') { 
                     sh 'mvn sonar:sonar '
